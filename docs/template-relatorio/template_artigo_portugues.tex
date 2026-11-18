@@ -1,0 +1,156 @@
+\documentclass[11pt, a4paper]{article}
+
+% --- PACOTES PRINCIPAIS ---
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\geometry{a4paper, top=2.5cm, bottom=2.5cm, left=2.0cm, right=2.0cm}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage[colorlinks=true, linkcolor=ufopred, citecolor=deepnavy, urlcolor=ufopred]{hyperref}
+
+% --- CORES INSTITUCIONAIS UFOP ---
+\definecolor{ufopred}{RGB}{140, 29, 36}
+\definecolor{deepnavy}{RGB}{20, 35, 60}
+\definecolor{lightgray}{RGB}{245, 247, 250}
+\definecolor{darkslate}{RGB}{30, 40, 50}
+
+% --- CONFIGURAÇÃO DE CABEÇALHO E RODAPÉ ---
+\pagestyle{fancy}
+\fancyhf{}
+\setlength{\headheight}{14pt}
+\rhead{\textcolor{darkslate}{\small \textbf{Plataforma CCO/UFOP} --- Artigo Científico}}
+\lhead{\textcolor{darkslate}{\small Modelagem Computacional Vascular}}
+\cfoot{\thepage}
+
+\tcbuselibrary{skins, breakable}
+
+\begin{document}
+
+% --- TÍTULO E AUTORES ---
+\begin{center}
+  {\LARGE \bfseries \textcolor{ufopred}{[Título do Artigo Científico em Português: Exemplo de Aplicação na Plataforma CCO/UFOP]}}\\[0.4cm]
+  {\large \textbf{[Nome do Aluno(a)]}$^{1}$, \textbf{[Nome do Orientador(a)]}$^{1}$, \textbf{[Nome do Coorientador(a)]}$^{1}$}\\[0.2cm]
+  {\small $^{1}$Departamento de Computação (DECOM) --- Universidade Federal de Ouro Preto (UFOP)\\[0.1cm]
+  \texttt{\{aluno@aluno.ufop.edu.br, orientador@ufop.edu.br\}}}\\[0.4cm]
+\end{center}
+
+% --- CAIXA DE RESUMO E PALAVRAS-CHAVE ---
+\begin{tcolorbox}[colback=lightgray, colframe=deepnavy, arc=3pt, title=\textbf{RESUMO}, fonttitle=\bfseries]
+\small
+\textbf{Contexto:} Apresente sucintamente o problema fisiológico ou computacional abordado no contexto de modelagem de redes vasculares arteriais sintéticas ou híbridas. 
+\textbf{Objetivo:} Descreva a principal contribuição do trabalho e o subprojeto da Plataforma CCO/UFOP no qual o estudo se insere (ex: CCO-GNN, CCO-Pulse, CCO-Retina).
+\textbf{Metodologia:} Resuma os métodos computacionais, algoritmos de crescimento (Murray/Poiseuille), frameworks de inteligência artificial ou modelos de simulação hemodinâmica desenvolvidos e testados.
+\textbf{Resultados:} Destaque os principais achados quantitativos, validações morfométricas, erros relativos e ganhos de desempenho computacional obtidos.
+\textbf{Conclusão:} Sintetize o impacto científico e as potenciais aplicações médicas/tecnológicas dos resultados.
+
+\vspace{0.2cm}
+\textbf{Palavras-Chave:} Modelagem Vascular; Método CCO; Lei de Murray; Hemodinâmica Computacional; Plataforma CCO/UFOP.
+\end{tcolorbox}
+
+\vspace{0.4cm}
+
+% --- SEÇÃO 1: INTRODUÇÃO ---
+\section{Introdução}
+As doenças cardiovasculares e cerebrovasculares permanecem como as principais causas de morbimortalidade no mundo. A simulação hemodinâmica não intrusiva e o planejamento cirúrgico dependem fundamentalmente da disponibilidade de representações geométricas precisas da árvore vascular humana. Contudo, imagens médicas distais (como angiotomografia) frequentemente apresentam limitações de resolução que impedem a reconstrução direta da microcirculação.
+
+Neste cenário, a \textbf{Plataforma CCO/UFOP} desenvolve um ecossistema científico cumulativo baseado no algoritmo \emph{Constrained Constructive Optimization} (CCO), introduzido por Schreiner \& Buxbaum (1993). O método CCO permite a geração estocástica e construtiva de árvores vasculares sintéticas otimizadas para suprir um determinado domínio de perfusão sob restrições fisiológicas reais.
+
+Este trabalho aborda o subprojeto \textbf{[Nome do Subprojeto, ex: CCO-Pulse / CCO-GNN]}, com o objetivo de [descrever a meta principal]. As principais contribuições deste artigo são:
+\begin{itemize}[leftmargin=*]
+  \item Proposição e implementação do algoritmo [descrever inovação];
+  \item Validação morfométrica e hemodinâmica sob a Lei de Murray e equações de Navier-Stokes/Poiseuille;
+  \item Integração ao repositório unificado no formato padronizado VTK.
+\end{itemize}
+
+% --- SEÇÃO 2: TRABALHOS RELACIONADOS ---
+\section{Trabalhos Relacionados}
+A literatura de geração automática de redes arteriais possui marcos importantes. O modelo clássico de CCO minimiza a potência vascular total $E$, equilibrando o trabalho de bombeamento hemodinâmico e o custo metabólico para manter o volume sanguíneo.
+
+Trabalhos recentes estenderam o CCO para acomodar hemodinâmica pulsátil (Olufsen et al., 2000), calibração por otimização Bayesiana e modelos de inteligência artificial baseados em redes neurais em grafos (GNNs). A Tabela~\ref{tab:relacionados} resume a comparação entre o método proposto e abordagens da literatura.
+
+\begin{table}[htbp]
+  \centering
+  \small
+  \caption{Comparação qualitativa entre métodos da literatura e a proposta atual.}
+  \label{tab:relacionados}
+  \begin{tabularx}{\textwidth}{l X X X}
+    \toprule
+    \textbf{Abordagem} & \textbf{Modelo Hemodinâmico} & \textbf{Estrutura de Dados} & \textbf{Limitação / Lacuna} \\
+    \midrule
+    CCO Clássico & Estacionário (Poiseuille) & Árvore estrita (sem ciclos) & Omite fluxo pulsátil e colaterais \\
+    Modelos 0D & Windkessel (Lumped) & Circuito elétrico equivalente & Ausência de geometria espacial \\
+    \textbf{Proposto (CCO/UFOP)} & \textbf{[Estacionário / 1D Pulsátil]} & \textbf{[VTK Graph / Mesh]} & \textbf{[Contribuição deste trabalho]} \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+% --- SEÇÃO 3: FUNDAMENTAÇÃO TEÓRICA E METODOLOGIA ---
+\section{Fundamentação Teórica e Metodologia}
+
+\subsection{Modelo Fisiológico e Restrições de Bifurcação}
+O escoamento sanguíneo nos segmentos vasculares cilíndricos é regido pela Lei de Poiseuille, onde a queda de pressão $\Delta P$ em um segmento de comprimento $L$, raio $r$ e vazão $Q$ é dada por:
+\begin{equation}
+  \Delta P = P_0 - P_1 = Q \cdot \left( \frac{8 \eta L}{\pi r^4} \right)
+  \label{eq:poiseuille}
+\end{equation}
+sendo $\eta = 3.6 \times 10^{-3}\,\text{Pa}\cdot\text{s}$ a viscosidade dinâmica do sangue.
+
+A relação de ramificação em cada bifurcação segue a Lei de Murray com expoente $\gamma$:
+\begin{equation}
+  r_0^\gamma = r_1^\gamma + r_2^\gamma \quad (2.55 \le \gamma \le 3.0)
+  \label{eq:murray}
+\end{equation}
+onde $r_0$ é o raio do vaso pai, e $r_1, r_2$ são os raios dos vasos filhos.
+
+\subsection{Algoritmo Desenvolvido e Arquitetura do Software}
+Descreva nesta subseção o fluxo do algoritmo implementado no módulo \texttt{[cco\_xxx]}. Apresente o pseudocódigo ou o diagrama de blocos do processo computacional.
+
+% --- SEÇÃO 4: RESULTADOS E DISCUSSÃO ---
+\section{Resultados e Discussão}
+Nesta seção, apresente os experimentos computacionais realizados. Inclua tabelas de métricas morfométricas e gráficos de convergência ou campos de pressão/fluxo.
+
+\subsection{Análise Morfométrica e Validação}
+A Tabela~\ref{tab:resultados} apresenta os resultados quantitativos obtidos para redes sintéticas com $N$ terminais.
+
+\begin{table}[htbp]
+  \centering
+  \small
+  \caption{Métricas morfométricas e desempenho computacional obtidos.}
+  \label{tab:resultados}
+  \begin{tabular}{ccccc}
+    \toprule
+    \textbf{Terminais ($N$)} & \textbf{Pressão de Perfusão (mmHg)} & \textbf{Vazão Total (mL/min)} & \textbf{Erro da Lei de Murray (\%)} & \textbf{Tempo de Execução (s)} \\
+    \midrule
+    50 & 100.0 & 120.5 & 0.12\% & 1.45 \\
+    200 & 100.0 & 120.0 & 0.08\% & 8.32 \\
+    1000 & 100.0 & 119.8 & 0.05\% & 45.10 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\subsection{Discussão dos Achados}
+Discuta a concordância dos resultados com dados fisiológicos conhecidos e analise o comportamento do algoritmo frente a limitações de memória ou tempo de processamento.
+
+% --- SEÇÃO 5: CONCLUSÃO ---
+\section{Conclusão}
+Sintetize as principais conclusões do trabalho, ressaltando o cumprimento dos objetivos propostos. Indique os desdobramentos futuros para a Plataforma CCO/UFOP e sugestões de continuidade para novos alunos do grupo de pesquisa.
+
+% --- AGRADECIMENTOS ---
+\section*{Agradecimentos}
+Os autores agradecem ao Departamento de Computação (DECOM) e à Universidade Federal de Ouro Preto (UFOP) pela infraestrutura computacional e suporte institucional. Este trabalho foi desenvolvido no âmbito da \textbf{Plataforma CCO/UFOP: Programa Integrado de Pesquisa em Modelagem Computacional de Redes Vasculares}.
+
+% --- REFERÊNCIAS BIBLIOGRÁFICAS ---
+\begin{thebibliography}{99}
+  \bibitem{schreiner1993} SCHREINER, W.; BUXBAUM, P. Computer-optimization of vascular trees. \textbf{IEEE Transactions on Biomedical Engineering}, v. 40, n. 5, p. 482--491, 1993.
+  \bibitem{murray1926} MURRAY, C. D. The physiological principle of minimum work: I. The vascular system and the cost of blood volume. \textbf{Proceedings of the National Academy of Sciences}, v. 12, n. 3, p. 207--214, 1926.
+  \bibitem{olufsen2000} OLUFSEN, M. S. et al. Numerical simulation and experimental validation of blood flow in arteries with structured tree outflow conditions. \textbf{Annals of Biomedical Engineering}, v. 28, n. 11, p. 1281--1299, 2000.
+  \bibitem{zamir1988} ZAMIR, M.; CHEE, H. Segment analysis of human coronary arteries. \textbf{Canadian Journal of Physiology and Pharmacology}, v. 66, n. 1, p. 155--159, 1988.
+\end{thebibliography}
+
+\end{document}
