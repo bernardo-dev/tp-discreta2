@@ -20,7 +20,10 @@ dos VTK.
 - `src/modulo_a/`: núcleo do Módulo A (leitura VTK, geometria 3D, validação e
   identificação estrutural).
 - `src/modulo_a/modulo_a_vtk.py`: interface de linha de comando do Módulo A.
-- `app_modulo_a.py`: interface gráfica interativa com Streamlit e Plotly.
+- `src/interface/`: módulos e abas da interface gráfica divididos por módulo
+  (`modulo_a/`, `modulo_b/`, `modulo_c/`, `modulo_d/` e `modulo_e/`).
+- `app.py`: ponto de entrada principal da interface gráfica interativa com
+  Streamlit e Plotly.
 - `data/dados_modelos3D/`: modelos VTK e imagens PNG fornecidos.
 - `resultados/`: arquivos CSV gerados pelo programa.
 - `tests/`: testes automatizados com pytest.
@@ -151,13 +154,13 @@ O arquivo `requirements.txt` inclui:
 Ainda na raiz do repositório:
 
 ```powershell
-python -m streamlit run app_modulo_a.py
+python -m streamlit run app.py
 ```
 
 Ou, usando o executável do ambiente ativo:
 
 ```powershell
-streamlit run app_modulo_a.py
+streamlit run app.py
 ```
 
 O Streamlit exibirá um endereço local, normalmente `http://localhost:8501`.
