@@ -14,6 +14,7 @@ from src.modulo_a.modulo_a_vtk import (
     processar_conteudo_vtk,
     processar_modelo_vtk,
 )
+from src.modulo_b.modulo_b_numeros import processar_parte_b0_segmentos
 
 
 @st.cache_data(show_spinner=False)
@@ -37,4 +38,20 @@ def obter_consolidado_em_cache(pasta_modelos: str) -> list[dict[str, Any]]:
     return gerar_tabela_consolidada(
         pasta_modelos=pasta_modelos,
         caminho_saida="resultados/tabela_consolidada_6_modelos.csv",
+    )
+
+
+@st.cache_data(show_spinner=False)
+def processar_b0_em_cache(
+    segmentos: list[dict[str, Any]],
+    m: int,
+    nome_arquivo: str,
+    codigo_modelo: str,
+) -> dict[str, Any]:
+    """Executa e armazena em cache o processamento completo da Parte B0."""
+    return processar_parte_b0_segmentos(
+        segmentos=segmentos,
+        m=m,
+        nome_arquivo=nome_arquivo,
+        codigo_modelo=codigo_modelo,
     )

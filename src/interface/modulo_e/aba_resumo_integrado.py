@@ -45,6 +45,6 @@ def renderizar_aba_resumo_integrado() -> None:
 - **T4 (Módulo D):** A construção de $\\mathcal{R}^+$ para `Nterm016` produz exemplos corretos de ancestralidade indireta — *Previsto no Módulo D*
 - **T5 (Módulo C):** A identidade de inclusão–exclusão fecha numericamente nos dados de `Nterm128` — *Previsto no Módulo C*
 - **T6 (Módulo C):** A recorrência deduzida reproduz os seis valores observados — *Previsto no Módulo C*
-- **T7 (Módulo B):** A soma das sete frequências da parte B0 é igual ao número de segmentos de `Nterm128` e a trilha B1 gera resultado conferível — *Previsto no Módulo B*
+- **T7 (Módulo B — Parte B0):** A soma das sete frequências da parte B0 é igual ao número de segmentos de `Nterm128` (`255`), com classes disjuntas e limite do PCP (`37`) verificado — **Parte B0 Implementada e Verificada** *(Trilha B1 prevista na próxima etapa)*
         """
     )
